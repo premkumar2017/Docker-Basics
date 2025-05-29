@@ -1,0 +1,38 @@
+# Docker-Basics
+Docker Basics: Step-by-Step Guide
+
+1️⃣ Installation & Verification
+docker --version          # Check Docker installation (00:00)
+
+2️⃣ Image Management
+
+docker images            # List all local images (00:23)
+docker rmi <image_id>    # Remove an image (08:36)
+docker pull nginx        # Download an image from Docker Hub (04:36)
+
+3️⃣ Building Custom Images
+
+# Build an image from Dockerfile 
+docker build -t myapp:1.0 .  
+
+# Tag an image for Docker Hub 
+docker tag myapp:1.0 username/myapp:1.0
+
+4️⃣ Container Operations
+
+# Run a container with port mapping 
+docker run -p 8080:80 myapp:1.0  
+
+# Manage containers 
+docker ps                 # List running containers (03:44)
+docker stop <container_id>
+docker start <container_id>
+docker rm <container_id>  # Delete a stopped container
+
+5️⃣ Docker Hub Integration
+
+docker login              # Authenticate to Docker Hub (04:36)
+docker push username/myapp:1.0  # Upload image (04:36)
+docker pull username/myapp:1.0  # Download image (04:36)
+
+
