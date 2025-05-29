@@ -34,5 +34,52 @@ docker rm <container_id>  # Delete a stopped container
 docker login              # Authenticate to Docker Hub (04:36)
 docker push username/myapp:1.0  # Upload image (04:36)
 docker pull username/myapp:1.0  # Download image (04:36)
+-------------------------------------------------------------------
 
+# Docker Image Transfer Guide (Without Remote Registry)
+
+Copy Docker images between servers **without Docker Hub or a private repository**.  
+Perfect for offline environments, air-gapped systems, or fast local transfers.
+
+---
+
+## **1️⃣ Export the Docker Image (Source Server)**
+
+# List available images
+docker images
+
+# Export image to a .tar file
+docker save -o /path/to/image.tar image_name:tag
+
+Example:
+docker save -o /home/user/nginx.tar nginx:latest
+
+2️⃣ Transfer the .tar File to Destination Server
+
+# Secure copy using rsync (recommended)
+rsync -avz /path/to/image.tar user@destination_ip:/path/to/destination/
+
+# Alternative: SCP (if rsync unavailable)
+scp /path/to/image.tar user@destination_ip:/path/to/destination/
+
+Example:
+rsync -avz /home/user/nginx.tar user@192.168.1.100:/home/user/
+
+3️⃣ Import the Docker Image (Destination Server)
+bash
+# SSH into the destination server
+ssh user@destination_ip
+
+# Load the image from .tar file
+docker load -i /path/to/image.tar
+
+# Verify imported image
+docker images
+
+Example:
+docker load -i /home/user/nginx.tar
+🔍 Verification
+
+# Check if the image exists
+docker images | grep nginx
 
