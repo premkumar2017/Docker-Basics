@@ -66,7 +66,7 @@ Example:
 rsync -avz /home/user/nginx.tar user@192.168.1.100:/home/user/
 
 3️⃣ Import the Docker Image (Destination Server)
-bash
+
 # SSH into the destination server
 ssh user@destination_ip
 
@@ -78,8 +78,17 @@ docker images
 
 Example:
 docker load -i /home/user/nginx.tar
+
 🔍 Verification
 
 # Check if the image exists
 docker images | grep nginx
 
+Compress large images:
+
+gzip /path/to/image.tar  # Creates image.tar.gz
+rsync -avz image.tar.gz user@destination_ip:/path/
+gunzip image.tar.gz     # On destination server
+
+Preserve disk space: Delete the .tar file after transfer.
+----------------------------------------------------------
