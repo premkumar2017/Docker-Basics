@@ -34,6 +34,13 @@ docker rm <container_id>  # Delete a stopped container
 docker login              # Authenticate to Docker Hub (04:36)
 docker push username/myapp:1.0  # Upload image (04:36)
 docker pull username/myapp:1.0  # Download image (04:36)
+
+optional 
+✅ Fix: Run a New Interactive Container That Stays Alive
+Instead of starting the old stopped container, run a new one interactively like this:
+
+sudo docker run -it ubuntu bash
+
 -------------------------------------------------------------------
 
 # Docker Image Transfer Guide (Without Remote Registry)
