@@ -40,6 +40,23 @@ optional
 Instead of starting the old stopped container, run a new one interactively like this:
 
 sudo docker run -it ubuntu bash
+--------------------------------------------------------
+
+# Build the Docker Image
+Run this in your project directory (where the Dockerfile is):
+
+sudo docker build -t my-project-image .
+
+-t: gives your image a name (my-project-image)
+.: means "use current directory"
+
+# Run the Container
+Once built, run the container:
+
+sudo docker run -it -p 3000:3000 my-project-image
+
+-p 3000:3000: maps port 3000 inside container to 3000 on your system
+-it: interactive terminal
 
 -------------------------------------------------------------------
 
