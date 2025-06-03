@@ -95,8 +95,8 @@ output :
 b5e22fe312ab   httpd               "httpd-foreground"       16 seconds ago   Up 15 seconds               0.0.0.0:9090->80/tcp, :::9090->80/tcp
 
 ------------------------------------------------
-
-sudo docker exec -it webserver bash    # Entering to webserver image
+sudo docker start <image_name>  # Start container or image 
+sudo docker exec -it <image_name> bash    # Entering to webserver image
 htdocs  # (HyperText Documents) is Apache's default directory for serving web files
 
 root@b5e22fe312ab:/usr/local/apache2/htdocs# ls index.html  #
