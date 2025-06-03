@@ -94,7 +94,40 @@ output :
       NAMES
 b5e22fe312ab   httpd               "httpd-foreground"       16 seconds ago   Up 15 seconds               0.0.0.0:9090->80/tcp, :::9090->80/tcp
 
+------------------------------------------------
 
+sudo docker exec -it webserver bash    # Entering to webserver image
+htdocs  # (HyperText Documents) is Apache's default directory for serving web files
 
+root@b5e22fe312ab:/usr/local/apache2/htdocs# ls index.html  #
 
+sudo docker diff <image /id>  # Shows filesystem changes in a container
+sudo docker commit <image /id> # Creates new image from container's changes
+sudo docker start webserver   # To start a container
+sudo docker stop <image>    # to stop a container
+sudo docker login
+---------------------------------------------------------------------
+sudo docker run -d --name myownserver -p 5070:80 b5e22fe312ab
 
+docker run
+    The base command to create and start a new Docker container
+
+-d (detach)
+    Runs the container in background (daemon mode) instead of attaching to your terminal
+
+--name myownserver
+    Assigns a custom name (myownserver) to the container for easier management
+    Without this, Docker would generate a random name
+
+-p 5070:80 (port mapping)
+    Maps port 5070 on your host machine to port 80 inside the container
+    Format: -p <host-port>:<container-port>
+    This allows accessing the container's service at http://localhost:5070
+
+b5e22fe312ab <image id>
+      The problematic part - this should be either:
+      A valid image name (like nginx:latest)
+---------------------------------------------------------------
+File transfer through local Like pen drive
+
+docker load -i myhttpd-v1.tar  # Transferring images between machines without a registry (e.g., air-gapped systems).
