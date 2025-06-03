@@ -107,7 +107,7 @@ sudo docker start webserver   # To start a container
 sudo docker stop <image>    # to stop a container
 sudo docker login
 ---------------------------------------------------------------------
-sudo docker run -d --name myownserver -p 5070:80 b5e22fe312ab
+'sudo docker run -d --name myownserver -p 5070:80 b5e22fe312ab'
 
 docker run
     The base command to create and start a new Docker container
@@ -122,7 +122,7 @@ docker run
 -p 5070:80 (port mapping)
     Maps port 5070 on your host machine to port 80 inside the container
     Format: -p <host-port>:<container-port>
-    This allows accessing the container's service at http://localhost:5070
+    This allows accessing the containers service at http://localhost:5070
 
 b5e22fe312ab <image id>
       The problematic part - this should be either:
@@ -130,4 +130,31 @@ b5e22fe312ab <image id>
 ---------------------------------------------------------------
 File transfer through local Like pen drive
 
-docker load -i myhttpd-v1.tar  # Transferring images between machines without a registry (e.g., air-gapped systems).
+' docker load -i myhttpd-v1.tar ' # Transferring images between machines without a registry (e.g., air-gapped systems).
+
+-------------------------------------------------------------------
+After 'pull' from docker hub
+
+# 1. Run the container
+sudo docker run -d -p 8080:80 --name my_httpd prem25/myhttpd:v1
+
+      Command Structure: Part	Explanation
+'sudo'	            Executes the command with root privileges (required unless your user is in the docker group)
+'docker run'	      The base command to create and start a new container from an image
+'-d'	                  Detached mode: Runs the container in the background
+'-p 8080:80'	      Port mapping: Binds host port 8080 to container port 80
+'--name my_httpd'	      Assigns a custom name (my_httpd) to the container
+'prem25/myhttpd:v1'     The image to use (format: [username]/[repository]:[tag])
+ 
+
+# 2. Verify it's running
+sudo docker ps
+
+# 3. Test access
+curl localhost:8080
+
+# 4. Stop when needed
+sudo docker stop my_httpd
+
+# 5. Remove when finished
+sudo docker rm my_httpd
