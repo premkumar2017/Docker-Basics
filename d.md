@@ -85,4 +85,16 @@ gunzip image.tar.gz     # On destination server
 bash
 docker stats    # Live container resource usage
 
+----------------------------
+✅ To run the basic website in local
+sudo docker pull httpd   # To pull the image from docker hub
+sudo docker run -d --name webserver -p 9090:80 httpd  # to run the webserver from localhost 9090
+udo docker ps -a # to check it whther port transfer the data
+output :
+      NAMES
+b5e22fe312ab   httpd               "httpd-foreground"       16 seconds ago   Up 15 seconds               0.0.0.0:9090->80/tcp, :::9090->80/tcp
+
+
+
+
 
